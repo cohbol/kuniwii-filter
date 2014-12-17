@@ -1,0 +1,189 @@
+//*******************************************************
+// Copyright (C) 2010-2011 Hiroshi Takey <htakey@gmail.com>
+// Santa Cruz de la Sierra, Bolivia.
+//
+// This file is part of KUniwii Filter.
+//
+// KUniwii Filter can not be copied and/or distributed without the express
+// permission of Hiroshi Takey.
+// This file is subject to the terms and conditions defined in
+// file 'LICENSE.txt', which is part of this source code package.
+//
+// ufmain.pas is part of Kuniwii Filter.
+
+//  Kuniwii Filter is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 2 of the License.
+
+//  Foobar is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+
+//  You should have received a copy of the GNU General Public License
+//  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+//*******************************************************/
+
+object fkuniwiifilter: Tfkuniwiifilter
+  Left = 0
+  Top = 0
+  Caption = 'kuniwiiapp'
+  ClientHeight = 527
+  ClientWidth = 1024
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [dkDesktop]
+  OnCreate = FormCreate
+  DesignerMobile = True
+  DesignerWidth = 1024
+  DesignerHeight = 552
+  DesignerDeviceName = '7.0 WSVGA Android Tablet'
+  DesignerOrientation = 3
+  DesignerOSVersion = ''
+  object ssalida_crudo: TScrollBar
+    Height = 33.000000000000000000
+    Max = 255.000000000000000000
+    SmallChange = 0.000000000000000000
+    Orientation = orHorizontal
+    Position.X = 24.000000000000000000
+    Position.Y = 328.000000000000000000
+    Width = 721.000000000000000000
+  end
+  object ssalida_filtrada: TScrollBar
+    Height = 33.000000000000000000
+    Max = 255.000000000000000000
+    SmallChange = 0.000000000000000000
+    Orientation = orHorizontal
+    Position.X = 24.000000000000000000
+    Position.Y = 376.000000000000000000
+    Width = 721.000000000000000000
+  end
+  object lmargenError: TLabel
+    Height = 23.000000000000000000
+    Position.X = 336.000000000000000000
+    Position.Y = 8.000000000000000000
+    Text = 'lmargenError'
+    Width = 193.000000000000000000
+    WordWrap = False
+    Trimming = ttCharacter
+  end
+  object lsalida_filtrada: TLabel
+    Height = 23.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Text = 'lsalida_filtrada'
+    Width = 321.000000000000000000
+    WordWrap = False
+    Trimming = ttCharacter
+  end
+  object Proximidad_Ruido: TLabel
+    Height = 23.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 32.000000000000000000
+    Text = 'Proximidad_Ruido'
+    Width = 321.000000000000000000
+    WordWrap = False
+    Trimming = ttCharacter
+  end
+  object timerlectura: TTimer
+    Enabled = False
+    Interval = 30
+    OnTimer = timerlecturaTimer
+    Left = 592
+    Top = 112
+  end
+  object smargenError: TScrollBar
+    Height = 41.000000000000000000
+    Max = 50.000000000000000000
+    SmallChange = 0.000000000000000000
+    Orientation = orHorizontal
+    Position.X = 24.000000000000000000
+    Position.Y = 104.000000000000000000
+    Width = 313.000000000000000000
+    OnChange = smargenErrorChange
+  end
+  object sruido: TScrollBar
+    Height = 41.000000000000000000
+    Max = 1.000000000000000000
+    SmallChange = 0.000000000000000000
+    Orientation = orHorizontal
+    Position.X = 24.000000000000000000
+    Position.Y = 168.000000000000000000
+    Width = 313.000000000000000000
+    OnChange = sruidoChange
+  end
+  object slecturaVel: TScrollBar
+    Height = 41.000000000000000000
+    Min = 20.000000000000000000
+    Value = 20.000000000000000000
+    SmallChange = 0.000000000000000000
+    Orientation = orHorizontal
+    Position.X = 24.000000000000000000
+    Position.Y = 240.000000000000000000
+    Width = 313.000000000000000000
+    OnChange = slecturaVelChange
+  end
+  object bactivar: TButton
+    Height = 52.000000000000000000
+    Position.X = 840.000000000000000000
+    Position.Y = 16.000000000000000000
+    TabOrder = 8
+    Text = 'Activar'
+    Trimming = ttCharacter
+    Width = 89.000000000000000000
+    OnClick = bactivarClick
+  end
+  object sensor_movimiento: TMotionSensor
+    Left = 648
+    Top = 168
+  end
+  object llecturavel: TLabel
+    Height = 23.000000000000000000
+    Position.X = 336.000000000000000000
+    Position.Y = 32.000000000000000000
+    Text = 'llecturavel'
+    Width = 193.000000000000000000
+    WordWrap = False
+    Trimming = ttCharacter
+  end
+  object Label1: TLabel
+    Height = 23.000000000000000000
+    Position.X = 400.000000000000000000
+    Position.Y = 120.000000000000000000
+    Text = 'Margen de Error'
+    Width = 249.000000000000000000
+    Trimming = ttCharacter
+  end
+  object Label2: TLabel
+    Height = 23.000000000000000000
+    Position.X = 400.000000000000000000
+    Position.Y = 184.000000000000000000
+    Text = 'Acercamiento Ruido'
+    Width = 249.000000000000000000
+    Trimming = ttCharacter
+  end
+  object Label3: TLabel
+    Height = 23.000000000000000000
+    Position.X = 400.000000000000000000
+    Position.Y = 264.000000000000000000
+    Text = 'Velocidad de Lectura'
+    Width = 249.000000000000000000
+    Trimming = ttCharacter
+  end
+  object Label4: TLabel
+    Height = 23.000000000000000000
+    Position.X = 760.000000000000000000
+    Position.Y = 336.000000000000000000
+    Text = 'Salida en Crudo'
+    Width = 249.000000000000000000
+    Trimming = ttCharacter
+  end
+  object Label5: TLabel
+    Height = 23.000000000000000000
+    Position.X = 760.000000000000000000
+    Position.Y = 392.000000000000000000
+    Text = 'Salida Filtrada'
+    Width = 249.000000000000000000
+    Trimming = ttCharacter
+  end
+end

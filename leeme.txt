@@ -1,0 +1,16 @@
+KUniwii Filter es un filtro de ruido desarrollado y pensado para utilizarlo en la robótica, uavs, rovers
+y entre otros.
+
+Éste filtro puede ser usado tanto con sensores y gps.
+Actualmente éste filtro está siendo usado en el controlador de Vuelo universal Uniwii de Drone.bo y parte de sus
+aplicaciones.
+
+La idea de éste filtro nace del estudio del filtro de Kalman, donde KUniwii es un proceso más estable, programable y fácil de implementar.
+El proceso de KUniwii lo que hace es continuar con el bucle del proceso de la filtración en tiempo real sin preocuparse del acercamiento de la salida
+hacia el nuevo valor de referencia o entrada.
+
+
+Autor: Hiroshi Takey
+Email: htakey@gmail.com
+
+Santa Cruz de la Sierra, Bolivia.
